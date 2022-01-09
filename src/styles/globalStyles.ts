@@ -10,4 +10,11 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.backgroundWhite}
     color: ${({ theme }) => theme.colors.textColor}
   }
+
+  body,
+  input,
+  button,
+  textarea {
+    font: 400 1rem "Roboto"
+  }
 `
