@@ -1,7 +1,10 @@
-
+import { GlobalStyle } from './styles/globalStyles';
 
 export function App() {
   return (
-    <h1>Iniciando o projeto com React</h1>
+    <>
+      <GlobalStyle />
+      <h1>Iniciando o projeto com React</h1>
+    </>
   );
 }
