@@ -10,6 +10,7 @@ import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
 
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 
 export const Home = () => {
   return (
@@ -31,7 +32,7 @@ export const Home = () => {
           </div>
 
           <form>
-            <input
+            <Input
               type="text"
               placeholder="Insira o código da lista"
             />

@@ -5,6 +5,7 @@ export const Container = styled.main`
   width: 100%;
   display: flex;
 `
+
 export const Aside = styled.aside`
   height: 100vh;
   width: 50%;
@@ -15,7 +16,7 @@ export const Aside = styled.aside`
   align-items: center;
 
   background: ${({ theme }) => theme.colors.backgroundOrange};
-  
+
   strong {
     font: 500 2rem "Roboto", sans-serif;
     color: ${({ theme }) => theme.colors.backgroundWhite};
@@ -53,7 +54,6 @@ export const BoxLogin = styled.div`
 export const Separator = styled.div`
     font-size: 1rem;
     color: ${({theme}) => theme.colors.gray};
-    margin: 32px 0;
     display: flex;
     align-items: center;
 

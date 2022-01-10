@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.button`
   height: 50px;
+  width: 100%;
   border-radius: 8px;
   font-weight: 500;
   background: ${({theme}) => theme.colors.backgroundOrange};
