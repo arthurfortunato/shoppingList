@@ -11,7 +11,33 @@ import logo from '../../assets/logo.svg'
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 
+import { FormEvent, useState } from 'react';
+import { database } from '../../services/firebase';
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth';
+
 export const NewList = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [newList, setNewList] = useState('');
+
+  async function handleCreateList(event: FormEvent) {
+    event.preventDefault();
+
+    if (newList.trim() === '') {
+      alert('Create list name')
+      return;
+    }
+
+    const listRef = database.ref('lists');
+
+    const firebaseList = await listRef.push({
+      title: newList,
+      userId: user?.id
+    })
+    navigate(`/lists/${firebaseList.key}`)
+  }
+
   return (
     <Container>
       <Aside>
@@ -25,13 +51,15 @@ export const NewList = () => {
           <img src={logo} alt="Logo" />
           <h2>Criar uma nova lista</h2>
 
-          <form>
+          <form onSubmit={handleCreateList}>
             <Input
               type="text"
               placeholder="Nome da lista"
+              value={newList}
+              onChange={event => setNewList(event.target.value)}
             />
             <div>
-              <Button>
+              <Button type="submit">
                 Criar lista
               </Button>
             </div>
