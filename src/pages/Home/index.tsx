@@ -2,12 +2,14 @@ import {
   Container,
   Aside,
   BodyContainer,
+  Login,
   BoxLogin,
   Separator
 } from './styles';
 
 import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
+import google from '../../assets/google.svg';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
@@ -23,13 +25,14 @@ export const Home = () => {
 
       <BodyContainer>
         <BoxLogin>
-          <div>
+          <Login>
             <img src={logo} alt="Logo" />
             <button>
-              Entre com a sua conta Google
+              <img src={google} alt="Logo da empresa Google" />
+              <p>Entre com a sua conta Google</p>
             </button>
             <Separator>ou veja uma lista de compras</Separator>
-          </div>
+          </Login>
 
           <form>
             <Input
@@ -37,7 +40,7 @@ export const Home = () => {
               placeholder="Insira o código da lista"
             />
             <div>
-              <Button>
+              <Button type="submit">
                 Ver listas de compras
               </Button>
             </div>

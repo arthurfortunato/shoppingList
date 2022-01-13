@@ -38,6 +38,36 @@ export const BodyContainer = styled.main`
   justify-content: center;
 `
 
+export const Login = styled.div`
+  
+  button {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+    
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid ${({ theme }) => theme.colors.gray};
+    margin-top: 20px;
+    font: 500 0.9rem 'Roboto', sans-serif;
+    color: ${({ theme }) => theme.colors.textColor};
+    
+    cursor: pointer;
+    transition: filter 0.4s;
+    
+    img {
+      width: 22px;
+      margin-right: 8px;
+    }
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+`
+
 export const BoxLogin = styled.div`
     display: flex;
     flex-direction: column;
