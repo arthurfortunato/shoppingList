@@ -14,7 +14,20 @@ import google from '../../assets/google.svg';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
+
 export const Home = () => {
+  const navigate = useNavigate()
+  const { user, signInWithGoogle} = useAuth()
+
+  async function handleCreateList() {
+    if(!user) {
+      await signInWithGoogle()
+    }
+    navigate('/lists/new')
+  }
+
   return (
     <Container>
       <Aside>
@@ -27,7 +40,7 @@ export const Home = () => {
         <BoxLogin>
           <Login>
             <img src={logo} alt="Logo" />
-            <button>
+            <button onClick={handleCreateList}>
               <img src={google} alt="Logo da empresa Google" />
               <p>Entre com a sua conta Google</p>
             </button>
