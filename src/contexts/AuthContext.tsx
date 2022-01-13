@@ -1,17 +1,19 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { auth } from '../services/firebase';
+import { auth, database } from '../services/firebase';
 import firebase from 'firebase/compat/app';
-
 
 type User = {
   id: string;
   name: string;
   avatar: string;
+  lists: string[];
 }
 
 type AuthContextType = {
   user: User | undefined;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: () => Promise<string | undefined>;
+  removeUserList: (listId: string) => void
+  signOut: () => Promise<void>
 }
 
 type AuthContextProviderProps = {
@@ -34,11 +36,41 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       if (!displayName || !photoURL || !uid) {
         throw new Error('Missing information from Google Account.')
       }
-      setUser({
-        id: uid,
-        name: displayName,
-        avatar: photoURL
-      })
+
+      database
+        .ref(`users/${uid}`)
+        .update({ name: displayName, avatar: photoURL })
+        .then(() => {
+          database.ref(`users/${uid}/lists`).on('value', (userListsRef) => {
+            let listsCodes: string[] = []
+
+            if (userListsRef.exists()) {
+              listsCodes = Object.entries(userListsRef.val()).map(
+                ([key]) => key
+              )
+            }
+            setUser({
+              id: uid,
+              name: displayName,
+              avatar: photoURL,
+              lists: listsCodes,
+            })
+          })
+        })
+        return result.user.uid
+    }
+    return undefined
+  }
+
+  async function signOut() {
+    await auth.signOut()
+    setUser(undefined)
+  }
+
+  function removeUserList(listId: string) {
+    if (user?.lists) {
+      const lists = user?.lists.filter((list) => list !== listId)
+      setUser({ ...user, lists })
     }
   }
 
@@ -50,11 +82,26 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         if (!displayName || !photoURL || !uid) {
           throw new Error('Missing information from Google Account.');
         }
-        setUser({
-          id: uid,
-          name: displayName,
-          avatar: photoURL
-        })
+        database
+          .ref(`users/${uid}`)
+          .update({ name: displayName, avatar: photoURL })
+          .then(() => {
+            database.ref(`users/${uid}/lists`).on('value', (userListsRef) => {
+              let listsCodes: string[] = []
+
+              if (userListsRef.exists()) {
+                listsCodes = Object.entries(userListsRef.val()).map(
+                  ([key]) => key
+                )
+              }
+              setUser({
+                id: uid,
+                name: displayName,
+                avatar: photoURL,
+                lists: listsCodes
+              })
+            })
+          })
       }
     })
 
@@ -64,7 +111,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, removeUserList, signOut }}>
       {props.children}
     </AuthContext.Provider>
   )

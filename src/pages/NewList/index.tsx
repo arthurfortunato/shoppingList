@@ -29,13 +29,18 @@ export const NewList = () => {
       return;
     }
 
-    const listRef = database.ref('lists');
+    if (user) {
+      const listsRef = database.ref('lists') // Reference to collection
+      const firebaseList = await listsRef.push({
+        title: newList,
+        author: { id: user.id, name: user.name, avatar: user.avatar },
+      })
+      await database
+        .ref(`/users/${user.id}/lists/${firebaseList.key}`)
+        .set(newList)
 
-    const firebaseList = await listRef.push({
-      title: newList,
-      userId: user?.id
-    })
-    navigate(`/lists/${firebaseList.key}`)
+        navigate(`/lists/${firebaseList.key}`)
+    }
   }
 
   return (
