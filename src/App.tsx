@@ -3,13 +3,13 @@ import theme from './styles/theme';
 import { GlobalStyle } from './styles/globalStyles';
 
 
-import { Home } from './pages/Home';
+import { Router } from './routes';
 
 export function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Home />
+      <Router />
     </ThemeProvider>
   );
 }
