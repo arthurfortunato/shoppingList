@@ -65,7 +65,7 @@ export const NewList = () => {
             />
             <div>
               <Button type="submit">
-                Criar lista
+                Criar lista de Compras
               </Button>
             </div>
           </form>

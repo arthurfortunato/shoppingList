@@ -1,6 +1,7 @@
 import {
   Container,
-  BodyContainer
+  BodyContainer,
+  Button
 } from './styles';
 
 import { ReactNode } from "react";
@@ -21,17 +22,16 @@ export function Product({
   disabled,
   onToggleCheck
 }: ProductProps) {
-  return ( 
+  return (
     <Container>
       <BodyContainer>
-        <button onClick={onToggleCheck} disabled={disabled}>
+        <Button onClick={onToggleCheck} disabled={disabled}>
           {isChecked ? (
-            <RiCheckboxCircleLine className="checked"/>
+            <RiCheckboxCircleLine className="checked" />
           ) : (
             <RiCheckboxBlankCircleLine />
           )}
-        </button>
-
+        </Button>
         <p>{name}</p>
       </BodyContainer>
       <div>{children}</div>

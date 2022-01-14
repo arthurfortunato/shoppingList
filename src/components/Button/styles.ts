@@ -7,16 +7,21 @@ export const Container = styled.button`
   font-weight: 500;
   background: ${({theme}) => theme.colors.backgroundOrange};
   color: #fff;
-  padding: 0 32px;
+  padding: 0 20px;
+
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
 
   cursor: pointer;
   border: 0;
 
-  transition: filter 0.3s;
+  transition: filter 0.4s;
 
   &.outlined {
     background: #fff;
-    border: ${({theme}) => theme.colors.backgroundOrange};
+    border: 1px solid ${({theme}) => theme.colors.backgroundOrange};
     color: ${({theme}) => theme.colors.backgroundOrange};
   }
 
@@ -27,5 +32,13 @@ export const Container = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  &.header-button {
+    .text {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
   }
 `

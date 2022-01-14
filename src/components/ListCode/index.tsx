@@ -14,7 +14,7 @@ export function ListCode(props: ListCodeProps) {
   return (
     <Button onClick={copyListCodeToClipboard}>
       <div>
-        <img src={copyIcon} alt="Copy User Code" />
+        <img src={copyIcon} alt="Copy List Code" />
       </div>
       <span>Lista #{props.code}</span>
     </Button>

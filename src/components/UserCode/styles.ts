@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
-  height: 40px;
+export const Container = styled.button`
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
@@ -9,21 +8,20 @@ export const Button = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.backgroundOrange};
   cursor: pointer;
   display: flex;
-
+  
   div {
-    height: 100%;
+    height: 40px;
     background: ${({ theme }) => theme.colors.backgroundOrange};
-    padding: 0 8px;
+    padding: 0 12px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
   }
 
   span {
     display: block;
     align-self: center;
-    padding: 0 16px 0 12px;
-    width: 245px;
+    flex: 1;
     font: 500 0.7rem "Roboto", sans-serif;
   }
 `

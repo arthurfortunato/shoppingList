@@ -5,22 +5,43 @@ export const Container = styled.main`
   justify-content: space-between;
   align-items: center;
 
-  background-color: var(--darken-white);
-  border-radius: 0.5em;
-  box-shadow: 0 0.12em 0.75em rgba(0, 0, 0, 0.04);
-  padding: 0.8em 1.5em;
+  background-color: ${({ theme }) => theme.colors.backgroundWhite};
+  border-radius: 5px;
+  box-shadow: 0 12px 7.5px rgba(0, 0, 0, 0.04);
+  padding: 15px 15px;
 `
 
 export const BodyContainer = styled.div`
-   display: flex;
-    align-items: center;
-    gap: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
-    color: var(--text-color);
+    color: ${({ theme }) => theme.colors.textColor};
     
     button {
       .checked {
-        color: var(--primary-color);
+        color: ${({ theme }) => theme.colors.backgroundOrange};
       }
+    } 
+`
+
+export const Button = styled.button`
+    width: 18px;
+    height: 18px;
+
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.darkGrey};
+
+    img,
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 `
