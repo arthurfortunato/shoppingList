@@ -31,7 +31,7 @@ export const Home = () => {
   return (
     <Container>
       <Aside>
-        <img src={illustration} alt="Mulher com os braços levantados segurando sacolas de compras" />
+        <img src={logo} alt="Mulher com os braços levantados segurando sacolas de compras" />
         <strong>Crie listas de compras em tempo real!</strong>
         <p>Tenha a sua lista de compras na palma da mão.</p>
       </Aside>
@@ -39,7 +39,7 @@ export const Home = () => {
       <BodyContainer>
         <BoxLogin>
           <Login>
-            <img src={logo} alt="Logo" />
+            <img src={illustration} alt="Logo" />
             <button onClick={handleCreateList}>
               <img src={google} alt="Logo da empresa Google" />
               <p>Entre com a sua conta Google</p>
