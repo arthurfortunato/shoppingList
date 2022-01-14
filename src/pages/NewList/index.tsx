@@ -46,14 +46,14 @@ export const NewList = () => {
   return (
     <Container>
       <Aside>
-        <img src={illustration} alt="Mulher com os braços levantados segurando sacolas de compras" />
+        <img src={logo} alt="Mulher com os braços levantados segurando sacolas de compras" />
         <strong>Crie listas de compras em tempo real!</strong>
         <p>Tenha a sua lista de compras na palma da mão.</p>
       </Aside>
 
       <BodyContainer>
         <BoxNewList>
-          <img src={logo} alt="Logo" />
+          <img src={illustration} alt="Logo" />
           <h2>Criar uma nova lista</h2>
 
           <form onSubmit={handleCreateList}>

@@ -51,7 +51,7 @@ export const BodyContainer = styled.main`
   @media (max-width: 681px) {
     width: 100%;
   }
-`
+` 
 
 export const Login = styled.div` 
   button {

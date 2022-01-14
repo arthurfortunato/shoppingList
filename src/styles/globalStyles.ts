@@ -6,6 +6,22 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  
+/* Scrollbar ============================================================== */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
   body {
     background-color: ${({ theme }) => theme.colors.backgroundWhite}
     color: ${({ theme }) => theme.colors.textColor}
@@ -15,6 +31,5 @@ export const GlobalStyle = createGlobalStyle`
   input,
   button,
   textarea {
-    font: 400 1rem "Roboto"
-  }
+  font: 400 1rem "Roboto"
 `

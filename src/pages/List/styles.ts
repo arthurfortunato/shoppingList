@@ -4,6 +4,7 @@ export const Container = styled.main`
   height: 100vh;
   width: 100%;
   background: ${({ theme }) => theme.colors.backgroundWhite};
+  overflow: auto;
 `
 
 export const Header = styled.header`
@@ -22,9 +23,28 @@ export const Header = styled.header`
       gap: 16px;
       align-items: center;
 
-      button {
+     .add {
         height: 40px;
+        margin-right: 20px;
       }
+    }
+    
+    @media (max-width: 803px) {
+      a img {
+        display: none;
+      }
+      justify-content: center;
+    }
+    @media (max-width: 489px) {
+    div {
+      width: 100%;
+    }
+    .add {
+      width: 100px;
+      span {
+        display: none;
+      }
+    }
   }
 `
 
@@ -84,6 +104,7 @@ export const Content = styled.main`
     border-radius: 0 5px 5px 0;
     width: 40%;
     height: 40px;
+    margin-right: 20px;
  }
 `
 
@@ -91,6 +112,7 @@ export const ProductList = styled.div`
   display: flex;
   gap: 5px;
   flex-direction: column;
+  margin-right: 20px;
 
   button {
     cursor: pointer;

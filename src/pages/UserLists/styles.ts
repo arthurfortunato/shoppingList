@@ -4,6 +4,7 @@ export const Container = styled.main`
   height: 100vh;
   width: 100%;
   background: ${({theme}) => theme.colors.backgroundWhite};
+  overflow: auto; 
 `
 export const Header = styled.header`
   padding: 15px;
@@ -33,6 +34,14 @@ export const HeaderButtons = styled.header`
         font: 500 0.8rem "Roboto", sans-serif;
       }
     }
+
+  @media (max-width: 800px) {
+    max-width: 100%;
+    justify-content: center;
+    .logo {
+      display: none;
+    }
+  }
 `
 
 export const ButtonSignOut = styled.button`

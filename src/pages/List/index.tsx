@@ -209,6 +209,7 @@ export function ShoppingList() {
                 headerButton
                 onClick={() => setModalOpen(true)}
                 isOutlined
+                className="add"
               >
                 <RiUserAddLine />
                 <span className="text">Adicionar pessoas</span>

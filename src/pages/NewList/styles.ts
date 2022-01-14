@@ -17,14 +17,25 @@ export const Aside = styled.aside`
 
   background: ${({ theme }) => theme.colors.backgroundOrange};
 
+  img {
+    width: 200px;
+    padding-bottom: 50px;
+  }
+
   strong {
     font: 500 2rem "Roboto", sans-serif;
     color: ${({ theme }) => theme.colors.backgroundWhite};
+    text-align: center;
   }
 
   p {
     font: 200 1.3rem "Roboto", sans-serif;
     color: ${({ theme }) => theme.colors.backgroundWhite};
+    text-align: center;
+  }
+
+  @media (max-width: 681px) { 
+    display: none;
   }
 `
 
@@ -36,6 +47,10 @@ export const BodyContainer = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 681px) {
+    width: 100%;
+  }
 `
 
 export const BoxNewList = styled.div`
