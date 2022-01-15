@@ -14,18 +14,51 @@ import google from '../../assets/google.svg';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 
+import { database } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth'
+import { FormEvent, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Home = () => {
   const navigate = useNavigate()
-  const { user, signInWithGoogle} = useAuth()
+  const { user, signInWithGoogle } = useAuth()
+  const [listId, setListId] = useState<string>('')
 
   async function handleCreateList() {
-    if(!user) {
-      await signInWithGoogle()
+    let userId = user?.id
+    if (!user) userId = await signInWithGoogle() 
+
+    const databaseUser = await database.ref(`users/${userId}`).get()
+
+    if (databaseUser.exists()) {
+      navigate('/lists')
+      return
     }
+
     navigate('/lists/new')
+  }
+
+  async function handleViewShoppingList(event: FormEvent) {
+    event.preventDefault()
+
+    if (listId.trim() === '') {
+      toast.error('Insira o código da lista')
+      return
+    }
+    const listRef = await database.ref(`lists/${listId}`).get()
+
+    if (!listRef.exists()) {
+      toast.error('Lista de compras inválida')
+      return
+    }
+
+    if (listRef.val().completedAt) {
+      toast.error('Lista já se encontra concluída')
+      return
+    }
+
+    navigate(`/lists/${listId}`)
   }
 
   return (
@@ -47,10 +80,12 @@ export const Home = () => {
             <Separator>ou veja uma lista de compras</Separator>
           </Login>
 
-          <form>
+          <form onSubmit={handleViewShoppingList}>
             <Input
               type="text"
               placeholder="Insira o código da lista"
+              value={listId}
+              onChange={event => setListId(event.target.value)}
             />
             <div>
               <Button type="submit">
@@ -58,6 +93,10 @@ export const Home = () => {
               </Button>
             </div>
           </form>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
         </BoxLogin>
       </BodyContainer>
     </Container>

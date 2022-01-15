@@ -70,6 +70,10 @@ export const BoxNewList = styled.div`
 
     p {
       padding-top: 10px;
-      color: ${({theme}) => theme.colors.gray}
+      color: ${({ theme }) => theme.colors.gray}
+    }
+
+    a {
+      color: ${({ theme }) => theme.colors.textColor};
     }
 `

@@ -13,7 +13,7 @@ import { Input } from '../../components/Input';
 
 import { FormEvent, useState } from 'react';
 import { database } from '../../services/firebase';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth';
 
 export const NewList = () => {
@@ -71,7 +71,7 @@ export const NewList = () => {
           </form>
 
           <p>
-            Quer entrar em uma lista existente?
+            Quer entrar em uma lista existente? <Link to="/">Clique aqui</Link>
           </p>
         </BoxNewList>
       </BodyContainer>
