@@ -22,7 +22,7 @@ export function UserCode(props: UserCodeProps) {
         <div>
           <img src={copyIcon} alt="Copy user code" />
         </div>
-        <span>User #{props.label || props.code}</span>
+        <span>Usuário #{props.label || props.code}</span>
       </button>
       <Toaster
         position="top-center"

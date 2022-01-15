@@ -15,7 +15,7 @@ export const Header = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
   
    > a img {
-      width: 50px;
+      width: 70px;
     }
 
   > div {
@@ -29,18 +29,8 @@ export const Header = styled.header`
       }
     }
     
-    @media (max-width: 803px) {
-      a img {
-        display: none;
-      }
-      justify-content: center;
-    }
     @media (max-width: 489px) {
-    div {
-      width: 100%;
-    }
     .add {
-      width: 100px;
       span {
         display: none;
       }
@@ -97,6 +87,7 @@ export const Content = styled.main`
     border-right: 0;
     border-radius: 5px 0 0 5px;
     outline: 0;
+    font: 400 0.8rem "Roboto", sans-serif;
   }
 
   button {
@@ -145,4 +136,76 @@ export const Separator = styled.div`
         margin-left: 5px;
       }
     }
+`
+
+export const ModalContent = styled.main`
+   margin: auto;
+  height: fit-content;
+  max-width: 33em;
+  padding: 3em !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5em;
+
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5em;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  span {
+    font-size: 0.8em;
+    color: var(--grey);
+  }
+
+  .users-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em;
+
+    .user-info {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+
+      img {
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+      }
+    }
+  }
+  form {
+    width: 100%;
+
+    input {
+      text-align: center;
+      height: 3.2em;
+      padding: 0 1em;
+
+      background-color: #fff;
+      border: 1px solid ${({theme}) => theme.colors.gray};
+      border-radius: 0.5em 0.5em 0 0;
+    }
+
+    button {
+      border-radius: 0 0 0.5em 0.5em;
+    }
+
+    button,
+    input {
+      width: 100%;
+    }
+  }
 `

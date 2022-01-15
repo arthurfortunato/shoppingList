@@ -14,13 +14,19 @@ export function ListCode(props: ListCodeProps) {
     toast.success('Código copiado')
   }
 
+  function codeList(code:any) {
+    if(!!props.code) {
+      return 'Código da Lista'
+    }
+  }
+
   return (
     <div>
     <Button onClick={copyListCodeToClipboard}>
       <div>
         <img src={copyIcon} alt="Copy List Code" />
       </div>
-      <span>Lista #{props.code}</span>
+      <span>{codeList(props.code)}</span>
     </Button>
       <Toaster
           position="top-center"

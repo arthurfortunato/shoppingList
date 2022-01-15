@@ -5,7 +5,8 @@ import {
   Title,
   Content,
   ProductList,
-  Separator
+  Separator,
+  ModalContent
 } from './styles';
 
 import {
@@ -21,13 +22,13 @@ import Modal from 'react-modal';
 import { ListCode } from '../../components/ListCode';
 import { Product } from '../../components/Product';
 import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/lists.png';
 
 import { database } from '../../services/firebase';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useList } from '../../hooks/useList';
 import { useAuth } from '../../hooks/useAuth';
+import toast, { Toaster } from 'react-hot-toast';
 
 type User = {
   id: string
@@ -68,9 +69,9 @@ type ShoppingListParams = {
 }
 
 export function ShoppingList() {
-  const navigate = useNavigate();
-  const params = useParams<ShoppingListParams>();
-  const { user } = useAuth();
+  const navigate = useNavigate()
+  const params = useParams<ShoppingListParams>()
+  const { user } = useAuth()
 
   const [newProduct, setNewProduct] = useState<string>('')
   const [newUserId, setNewUserId] = useState<string>('')
@@ -162,7 +163,7 @@ export function ShoppingList() {
     }
   }
 
-  async function handleToogleCheck(productId: string, isChecked: boolean) {
+  async function handleToggleChecked(productId: string, isChecked: boolean) {
     await database
       .ref(`lists/${listId}/products/${productId}`)
       .update({ isChecked: !isChecked })
@@ -180,12 +181,14 @@ export function ShoppingList() {
     const databaseUser = await database.ref(`/users/${newUserId}`).get()
 
     if (!databaseUser.exists()) {
-      alert('O ID do utilizado é inválido')
+      toast.error('O ID do usuário é inválido')
       return
     }
 
     if (newUserId.trim() === user?.id) {
-      alert('Não se preocupe! Você já está na lista :)')
+      toast('Não se preocupe! Você já está na lista :)', {
+        icon: '👏'
+      })
       return
     }
 
@@ -199,22 +202,22 @@ export function ShoppingList() {
   return (
     <Container>
       <Header>
-          <Link to={user ? '/lists' : '/'}>
-            <img src={logo} alt="Vamos Comprar" />
-          </Link>
-          <div>
-            <ListCode code={listId} />
-            {user?.id === list?.author.id && (
-              <Button
-                headerButton
-                onClick={() => setModalOpen(true)}
-                isOutlined
-                className="add"
-              >
-                <RiUserAddLine />
-                <span className="text">Adicionar pessoas</span>
-              </Button>
-            )}
+        <Link to={user ? '/lists' : '/'}>
+          <img src={logo} alt="Vamos Comprar" />
+        </Link>
+        <div>
+          <ListCode code={listId} />
+          {user?.id === list?.author.id && (
+            <Button
+              headerButton
+              onClick={() => setModalOpen(true)}
+              isOutlined
+              className="add"
+            >
+              <RiUserAddLine />
+              <span className="text">Adicionar pessoas</span>
+            </Button>
+          )}
         </div>
       </Header>
 
@@ -228,7 +231,7 @@ export function ShoppingList() {
           <form onSubmit={handleAddProduct}>
             <input
               type="text"
-              placeholder="Insira o nome do produto"
+              placeholder="Insira o nome do produto..."
               onChange={(event) => setNewProduct(event.target.value)}
               value={newProduct}
               disabled={isDisabled}
@@ -237,7 +240,7 @@ export function ShoppingList() {
               <RiAddCircleLine />
               <span className="text">Adicionar produto</span>
             </Button>
-          </form> 
+          </form>
 
           <ProductList className="product-list">
             {list?.toCheckProducts.map((product) => (
@@ -246,7 +249,7 @@ export function ShoppingList() {
                 key={product.id}
                 name={product.name}
                 isChecked={false}
-                onToggleCheck={() => handleToogleCheck(product.id, false)}
+                onToggleCheck={() => handleToggleChecked(product.id, false)}
               >
                 {!isDisabled && (
                   <button
@@ -269,7 +272,7 @@ export function ShoppingList() {
                     name={product.name}
                     isChecked
                     disabled={isDisabled}
-                    onToggleCheck={() => handleToogleCheck(product.id, true)}
+                    onToggleCheck={() => handleToggleChecked(product.id, true)}
                   />
                 ))}
               </ProductList>
@@ -284,33 +287,39 @@ export function ShoppingList() {
         isOpen={isModalOpen}
         id="add-user-to-list"
       >
-        <h2>Adicionar utilizador à sua lista</h2>
-        <p>
-          Insira o ID do utilizador que deseja adicionar
-          <br />O seu ID é <strong>{user?.id}</strong>
-        </p>
-        <span>Utilizadores já adicionados</span>
-        <div className="users-list">
-          {list?.users?.map((user) => {
-            return (
-              <div key={user.id} className="user-info">
-                <img src={user.avatar} alt={user.name} />
-                <p>{user.name}</p>
-              </div>
-            )
-          })}
-        </div>
-        <form onSubmit={addUser}>
-          <input
-            type="text"
-            placeholder="Digite o ID"
-            onChange={(event) => setNewUserId(event.target.value)}
-            value={newUserId}
+        <ModalContent>
+          <h2>Adicionar usuário à sua lista</h2>
+          <p>
+            Insira o ID do usuário que deseja adicionar
+            <br />O seu ID é <strong>{user?.id}</strong>
+          </p>
+          <span>Usuário já adicionado!</span>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
           />
-          <Button type="submit" disabled={isDisabled}>
-            Adicionar utilizador
-          </Button>
-        </form>
+          <div className="users-list">
+            {list?.users?.map((user) => {
+              return (
+                <div key={user.id} className="user-info">
+                  <img src={user.avatar} alt={user.name} />
+                  <p>{user.name}</p>
+                </div>
+              )
+            })}
+          </div>
+          <form onSubmit={addUser}>
+            <input
+              type="text"
+              placeholder="Digite o ID"
+              onChange={(event) => setNewUserId(event.target.value)}
+              value={newUserId}
+            />
+            <Button type="submit" disabled={isDisabled}>
+              Adicionar usuário
+            </Button>
+          </form>
+        </ModalContent>
       </Modal>
     </Container>
   )

@@ -8,7 +8,7 @@ import {
   Content
 } from './styles';
 
-import logoImg from '../../assets/logo.svg';
+import logoImg from '../../assets/lists.png';
 import { RiFileAddLine, RiLogoutBoxRLine } from 'react-icons/ri';
 
 import { Button } from '../../components/Button';

@@ -20,10 +20,14 @@ export const Button = styled.button`
   }
 
   span {
-    display: block;
     align-self: center;
     padding: 0 16px 0 12px;
     width: 245px;
     font: 500 0.7rem "Roboto", sans-serif;
+  }
+
+  @media (max-width: 650px) {
+      width: 150px;
+      overflow: hidden;
   }
 `

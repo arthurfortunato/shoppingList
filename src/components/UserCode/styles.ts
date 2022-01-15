@@ -25,10 +25,10 @@ export const Container = styled.main`
       align-self: center;
       flex: 1;
       font: 500 0.7rem "Roboto", sans-serif;
-
-      @media (max-width: 768px) {
-        display: none;
-      }
     }
+
+    @media (max-width: 768px) {
+        width: 150px;
+      }
 }
 `

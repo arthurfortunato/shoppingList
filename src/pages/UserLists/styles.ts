@@ -19,7 +19,7 @@ export const HeaderButtons = styled.header`
   align-items: center; 
   
     .logo {
-      max-width: 50px;
+      max-width: 70px;
     }
     
     div {
@@ -37,10 +37,6 @@ export const HeaderButtons = styled.header`
 
   @media (max-width: 800px) {
     max-width: 100%;
-    justify-content: center;
-    .logo {
-      display: none;
-    }
   }
 `
 
@@ -86,4 +82,9 @@ export const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5px;
+
+  @media (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
