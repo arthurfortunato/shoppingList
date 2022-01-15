@@ -9,7 +9,7 @@ import { ShoppingList } from '../pages/List';
 import { NewList } from '../pages/NewList';
 import { UserLists } from '../pages/UserLists';
 
-import { AuthContextProvider } from '../contexts/AuthContext'
+import { AuthContextProvider } from '../contexts/AuthContext';
 import { ListsContextProvider } from '../contexts/ListContext';
 
 export const Router = () => {

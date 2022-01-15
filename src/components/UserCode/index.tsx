@@ -3,6 +3,7 @@ import {
 } from './styles';
 
 import copyIcon from '../../assets/copy.svg'
+import toast, { Toaster } from 'react-hot-toast';
 
 type UserCodeProps = {
   code: string
@@ -11,21 +12,22 @@ type UserCodeProps = {
 
 export function UserCode(props: UserCodeProps) {
   function copyUserCodeToClipboard() {
-    try {
-      navigator.clipboard.writeText(props.code)
-      alert('Código do utilizador copiado')
-    } catch (err) {
-     alert('Erro ao copiar código')
-     alert('O código do utilizador é ' + props.code)
-    }
+    navigator.clipboard.writeText(props.code)
+    toast.success('Código do utilizador copiado')
   }
 
   return (
-    <Container className="user-code" onClick={copyUserCodeToClipboard}>
-      <div>
-        <img src={copyIcon} alt="Copy user code" />
-      </div>
-      <span>User #{props.label || props.code}</span>
+    <Container>
+      <button className="user-code" onClick={copyUserCodeToClipboard}>
+        <div>
+          <img src={copyIcon} alt="Copy user code" />
+        </div>
+        <span>User #{props.label || props.code}</span>
+      </button>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </Container>
   )
 } 

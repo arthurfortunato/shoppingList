@@ -61,13 +61,13 @@ export const BodyContainer = styled.main`
       .options {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 15px;
 
         img,
         svg,
         button {
-          width: 18px;
-          height: 18px;
+          width: 20px;
+          height: 20px;
           background-color: transparent;
           border: 0;
           cursor: pointer;

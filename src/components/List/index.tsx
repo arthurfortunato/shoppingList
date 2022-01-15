@@ -5,10 +5,11 @@ import {
 } from './styles';
 
 import {
-  RiArrowRightSLine,
   RiDeleteBin7Line,
   RiShoppingBasketLine,
 } from 'react-icons/ri';
+
+import { CgLogIn } from 'react-icons/cg';
 
 type ListProps = {
   title: string
@@ -52,7 +53,7 @@ export function List({
               </button>
             )}
             <button type="button" onClick={handleGoToShoppingList}>
-              <RiArrowRightSLine className="highlighted" />
+              <CgLogIn className="highlighted"/>
             </button>
           </div>
         </div>
