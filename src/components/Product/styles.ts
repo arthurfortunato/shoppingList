@@ -23,6 +23,10 @@ export const BodyContainer = styled.div`
         color: ${({ theme }) => theme.colors.backgroundOrange};
       }
     } 
+
+    p {
+      width: 300px;
+    }
 `
 
 export const Button = styled.button`

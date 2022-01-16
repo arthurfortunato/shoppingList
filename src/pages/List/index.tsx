@@ -242,7 +242,7 @@ export function ShoppingList() {
             </Button>
           </form>
 
-          <ProductList className="product-list">
+          <ProductList>
             {list?.toCheckProducts.map((product) => (
               <Product
                 disabled={isDisabled}

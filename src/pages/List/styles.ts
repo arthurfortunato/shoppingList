@@ -106,6 +106,7 @@ export const ProductList = styled.div`
   margin-right: 20px;
 
   button {
+    width: 20px;
     cursor: pointer;
     border: 0;
     background: ${({ theme }) => theme.colors.backgroundWhite};
@@ -139,7 +140,7 @@ export const Separator = styled.div`
 `
 
 export const ModalContent = styled.main`
-   margin: auto;
+  margin: auto;
   height: fit-content;
   max-width: 33em;
   padding: 3em !important;
