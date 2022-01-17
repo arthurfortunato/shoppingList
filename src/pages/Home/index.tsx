@@ -13,6 +13,7 @@ import google from '../../assets/google.svg';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Footer } from '../../components/Footer';
 
 import { database } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +28,7 @@ export const Home = () => {
 
   async function handleCreateList() {
     let userId = user?.id
-    if (!user) userId = await signInWithGoogle() 
+    if (!user) userId = await signInWithGoogle()
 
     const databaseUser = await database.ref(`users/${userId}`).get()
 
@@ -98,6 +99,7 @@ export const Home = () => {
             reverseOrder={false}
           />
         </BoxLogin>
+      <Footer />
       </BodyContainer>
     </Container>
   )
